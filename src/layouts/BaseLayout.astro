@@ -19,7 +19,7 @@ const {
   article = false,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://blog.sumitk.me');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://writing.sumitk.me');
 const pageTitle = title === 'Sumit Kumar' ? 'Sumit Kumar' : `${title} — Sumit Kumar`;
 ---
 

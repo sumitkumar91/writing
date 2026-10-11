@@ -29,9 +29,28 @@ const {
   author = 'Sumit Kumar',
   headings = [],
 } = Astro.props;
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Person",
+    "name": author,
+    "url": "https://writing.sumitk.me"
+  },
+  "datePublished": pubDate.toISOString(),
+  ...(updatedDate ? { "dateModified": updatedDate.toISOString() } : {}),
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": Astro.url.href
+  }
+};
 ---
 
 <BaseLayout title={title} description={description} publishedTime={pubDate.toISOString()} article={true}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaData)} />
   <!-- Scroll Progress Indicator -->
   <div id="scroll-progress-bar" class="fixed top-0 left-0 h-[2px] bg-[var(--accent)] z-50 transition-all duration-75 w-0"></div>
 

@@ -6,7 +6,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
-  site: 'https://blog.sumitk.me',
+  site: 'https://writing.sumitk.me',
   server: {
     port: 1729,
   },
