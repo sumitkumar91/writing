@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { formatDate } from '../utils/formatDate';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Group posts by year
+const postsByYear = allPosts.reduce<Record<number, typeof allPosts>>((acc, post) => {
+  const year = post.data.pubDate.getFullYear();
+  if (!acc[year]) acc[year] = [];
+  acc[year].push(post);
+  return acc;
+}, {});
+
+const years = Object.keys(postsByYear)
+  .map(Number)
+  .sort((a, b) => b - a);
+---
+
+<BaseLayout>
+  <div class="max-w-3xl mx-auto px-6 py-14">
+    <!-- Intro Header -->
+    <header class="mb-14 pb-8 border-b border-[var(--border-subtle)]">
+      <h1 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-[var(--text-primary)] mb-3">
+        Writing
+      </h1>
+      <p class="font-serif text-lg text-[var(--text-secondary)] leading-relaxed">
+        Essays, mathematical notes, and writing by Sumit Kumar.
+      </p>
+    </header>
+
+    <!-- Writings List -->
+    <section>
+      {years.length === 0 ? (
+        <div class="py-14 text-center rounded-lg border border-dashed border-[var(--border-subtle)] bg-[var(--bg-secondary)]/30 font-sans">
+          <p class="font-serif italic text-base text-[var(--text-secondary)] mb-1">
+            No entries yet.
+          </p>
+          <p class="text-xs text-[var(--text-muted)] max-w-sm mx-auto">
+            Add an MDX file inside <code class="font-mono text-xs bg-[var(--code-bg)] px-1.5 py-0.5 rounded border border-[var(--border-subtle)]">src/content/blog/</code> to publish.
+          </p>
+        </div>
+      ) : (
+        <div class="space-y-12">
+          {years.map((year) => (
+            <div>
+              <div class="font-mono text-xs font-semibold text-[var(--text-muted)] tracking-wider mb-4 border-b border-[var(--border-subtle)]/50 pb-1">
+                {year}
+              </div>
+              <ul class="divide-y divide-[var(--border-subtle)]/60">
+                {postsByYear[year].map((post) => (
+                  <li class="py-4 first:pt-0 last:pb-0 group">
+                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+                      <div class="space-y-1">
+                        <a
+                          href={`/posts/${post.id}`}
+                          class="font-serif text-lg sm:text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors block leading-snug"
+                        >
+                          {post.data.title}
+                        </a>
+                        <p class="font-serif text-xs sm:text-sm text-[var(--text-secondary)] line-clamp-2">
+                          {post.data.description}
+                        </p>
+                      </div>
+
+                      <time
+                        datetime={post.data.pubDate.toISOString()}
+                        class="font-sans text-xs text-[var(--text-muted)] shrink-0 sm:text-right"
+                      >
+                        {formatDate(post.data.pubDate)}
+                      </time>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+  </div>
+</BaseLayout>

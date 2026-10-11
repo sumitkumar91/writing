@@ -1,0 +1,19 @@
+---
+interface Props {
+  of?: string;
+}
+
+const { of } = Astro.props;
+---
+
+<div class="my-6 pl-4 border-l-2 border-[var(--border-strong)] text-[1rem] leading-relaxed text-[var(--text-primary)]">
+  <div class="font-sans italic font-medium text-[var(--text-secondary)] mb-2">
+    Proof{of ? ` (${of})` : ''}.
+  </div>
+  <div class="space-y-3 [&>p:first-child]:mt-0">
+    <slot />
+  </div>
+  <div class="mt-2 text-right select-none text-[var(--text-muted)] font-mono text-base">
+    &#9632;
+  </div>
+</div>

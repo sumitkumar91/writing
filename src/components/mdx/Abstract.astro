@@ -1,0 +1,26 @@
+---
+interface Props {
+  keywords?: string[];
+}
+
+const { keywords = [] } = Astro.props;
+---
+
+<div class="my-8 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-secondary)]/50 p-6 sm:p-7 transition-colors">
+  <div class="mb-3 font-sans text-xs font-bold tracking-widest uppercase text-[var(--accent)] text-center">
+    Abstract
+  </div>
+  <div class="font-serif text-[1rem] leading-relaxed text-[var(--text-secondary)] italic text-justify sm:text-left [&>p]:mt-0 [&>p]:mb-0">
+    <slot />
+  </div>
+  {keywords.length > 0 && (
+    <div class="mt-4 pt-4 border-t border-[var(--border-subtle)]/70 flex flex-wrap gap-2 text-xs font-sans text-[var(--text-muted)] items-center">
+      <span class="font-medium text-[var(--text-secondary)]">Keywords:</span>
+      {keywords.map((kw) => (
+        <span class="inline-flex items-center px-2 py-0.5 rounded bg-[var(--bg-card)] border border-[var(--border-subtle)] text-[var(--text-secondary)]">
+          {kw}
+        </span>
+      ))}
+    </div>
+  )}
+</div>

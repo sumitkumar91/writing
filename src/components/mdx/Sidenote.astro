@@ -1,0 +1,23 @@
+---
+interface Props {
+  id: string | number;
+}
+
+const { id } = Astro.props;
+const inputId = `sidenote-${id}`;
+---
+
+<span class="sidenote-wrapper relative inline">
+  <label
+    for={inputId}
+    class="sidenote-label cursor-pointer select-none font-sans text-xs font-semibold text-[var(--accent)] hover:underline inline-block align-super px-0.5"
+    title={`Toggle note ${id}`}
+  >
+    [{id}]
+  </label>
+  <input type="checkbox" id={inputId} class="sidenote-checkbox sr-only peer" />
+  <span class="sidenote-text hidden peer-checked:block xl:!block xl:float-right xl:clear-right xl:-mr-[320px] xl:w-[270px] xl:text-[0.85rem] text-[0.875rem] font-sans text-[var(--text-secondary)] leading-relaxed my-2 xl:my-0 p-3 xl:p-0 bg-[var(--bg-secondary)] xl:bg-transparent rounded xl:rounded-none border xl:border-0 border-[var(--border-subtle)] transition-all">
+    <span class="font-semibold text-[var(--accent)] mr-1">[{id}]</span>
+    <slot />
+  </span>
+</span>

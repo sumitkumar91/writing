@@ -1,0 +1,44 @@
+---
+interface Props {
+  id: string;
+  authors: string;
+  year: string | number;
+  title: string;
+  source?: string;
+  url?: string;
+  doi?: string;
+}
+
+const { id, authors, year, title, source, url, doi } = Astro.props;
+---
+
+<div id={`ref-${id}`} class="target:bg-[var(--accent-subtle)] target:p-2 target:rounded transition-colors flex gap-3 text-sm">
+  <span class="font-mono text-xs font-semibold text-[var(--accent)] shrink-0 select-none">
+    [{id}]
+  </span>
+  <div class="leading-relaxed">
+    <span class="font-medium text-[var(--text-primary)]">{authors}</span> ({year}).
+    <span class="font-serif italic text-[var(--text-primary)]"> {title}</span>.
+    {source && <span class="text-[var(--text-secondary)]"> {source}.</span>}
+    {doi && (
+      <a
+        href={`https://doi.org/${doi}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="ml-1 text-xs font-mono text-[var(--accent)] hover:underline inline-block"
+      >
+        doi:{doi}
+      </a>
+    )}
+    {!doi && url && (
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="ml-1 text-xs font-mono text-[var(--accent)] hover:underline inline-block"
+      >
+        [link]
+      </a>
+    )}
+  </div>
+</div>

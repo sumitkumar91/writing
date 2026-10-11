@@ -1,0 +1,16 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = "References" } = Astro.props;
+---
+
+<section class="mt-14 pt-8 border-t border-[var(--border-strong)] text-[0.925rem]">
+  <h2 class="font-serif text-xl font-bold tracking-tight text-[var(--text-primary)] mb-6">
+    {title}
+  </h2>
+  <div class="space-y-4 font-sans text-[var(--text-secondary)] leading-relaxed">
+    <slot />
+  </div>
+</section>

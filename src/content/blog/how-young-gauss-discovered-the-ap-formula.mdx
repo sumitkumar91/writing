@@ -1,0 +1,100 @@
+---
+title: "How Young Gauss Discovered the AP Formula"
+description: "A famous anecdote about Carl Friedrich Gauss and the elegant derivation of the arithmetic progression sum formula."
+pubDate: 2026-10-10
+tags: ["Mathematics", "History"]
+author: "Sumit Kumar"
+draft: false
+---
+
+This is my first piece of writing here, and what better way to start than by talking about one of my favorite stories in the mathematical world?
+
+I usually narrate this story to my students in Discrete Math at the Stony Brook University Tutoring Center because I feel it makes seemingly boring mathematics more fun and relatable.
+
+So, let us start the story.
+
+According to a famous mathematical anecdote, the legendary mathematician Carl Friedrich Gauss was in grade 3 at this time. He was in his classroom when the teacher asked all the students to compute the following summation:
+
+$$
+S = 1 + 2 + 3 + \cdots + 98 + 99 + 100
+$$
+
+The teacher wanted to keep the students busy and quiet for a long time with the help of this problem.
+
+But little did the teacher know that one of the greatest mathematicians to ever exist was sitting in that classroom.
+
+To everyone’s surprise, Gauss was able to compute the sum in mere seconds.
+
+The teacher was shocked and asked Gauss to explain how he had computed it so quickly.
+
+The young Gauss explained:
+
+I realized that the sum of the first and last numbers is $101$ ($100+1$). Similarly, the sum of the second and second-to-last numbers is $101$ ($2+99$). Again, the sum of the third and third-to-last numbers is also $101$ ($3+98$). And so on. This means every such pair sums to $101$. There are $100$ terms in total, so there are $50$ such pairs. This gives us the sum $50 \times 101 = 5050$.
+
+The teacher was astonished, flabbergasted, and whatever other adjectives you could think of in this regard.
+
+This led to the birth of the arithmetic progression formula.
+
+Let us generalize the formula.
+
+Let us say we have a sequence of the following form:
+
+$$
+a,\ a+d,\ a+2d,\ \ldots,\ a+(n-1)d
+$$
+
+Here, $a$ is the first term and $d$ is the common difference.
+
+In the story, you can notice that $a=1$ (the first term is $1$) and $d=1$ (the difference between two consecutive terms is $1$). Also, $n=100$ because there are $100$ terms.
+
+So, let us compute $S$ using the idea Gauss proposed:
+
+$$
+S = a + (a+d) + (a+2d) + \cdots + (a+(n-2)d) + (a+(n-1)d) \tag{i}
+$$
+
+Behold!
+
+We can rewrite $S$ as:
+
+$$
+S = (a+(n-1)d) + (a+(n-2)d) + \cdots + (a+2d) + (a+d) + a \tag{ii}
+$$
+
+Add (i) and (ii):
+
+$$
+2S = [2a+(n-1)d] + [2a+(n-1)d] + \cdots + [2a+(n-1)d]
+$$
+
+Realize that we are using the same idea: the sums of the pairs are all the same.
+
+Now, since the total number of terms is $n$, the total number of terms on the right-hand side of the equation is also $n$.
+
+Rewriting our equation:
+
+$$
+2S = n[2a+(n-1)d]
+$$
+
+$$
+S = \frac{n}{2}[2a+(n-1)d]
+$$
+
+And this, ladies and gentlemen, is the generalized formula for the sum of an arithmetic progression.
+
+We can also express it in terms of the first and last terms. If the last term is $l = a + (n-1)d$, then the formula becomes:
+
+$$
+S = \frac{n}{2}(a+l)
+$$
+
+In other words, the sum of an arithmetic progression is the number of terms multiplied by the average of the first and last terms.
+
+That is it! The main idea of this article was to share the beauty of mathematics and show that it is not as boring as people might generally think.
+
+To end, here is a quote attributed to Gauss:
+
+> “Mathematics is the queen of the sciences, and number theory is the queen of mathematics.”
+
+— *Carl Friedrich Gauss*

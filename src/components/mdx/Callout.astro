@@ -1,0 +1,57 @@
+---
+interface Props {
+  type?: 'note' | 'warning' | 'insight' | 'remark' | 'quote';
+  title?: string;
+}
+
+const { type = 'note', title } = Astro.props;
+
+const styles = {
+  note: {
+    border: 'border-l-4 border-stone-500/80',
+    bg: 'bg-stone-500/[0.06]',
+    text: 'text-[var(--text-primary)]',
+    badge: 'text-stone-700 dark:text-stone-300',
+    defaultTitle: 'Note',
+  },
+  warning: {
+    border: 'border-l-4 border-rose-600/80',
+    bg: 'bg-rose-500/[0.06]',
+    text: 'text-[var(--text-primary)]',
+    badge: 'text-rose-800 dark:text-rose-300',
+    defaultTitle: 'Warning',
+  },
+  insight: {
+    border: 'border-l-4 border-sky-600/80',
+    bg: 'bg-sky-500/[0.06]',
+    text: 'text-[var(--text-primary)]',
+    badge: 'text-sky-800 dark:text-sky-300',
+    defaultTitle: 'Key Insight',
+  },
+  remark: {
+    border: 'border-l-4 border-amber-600/80',
+    bg: 'bg-amber-500/[0.06]',
+    text: 'text-[var(--text-primary)]',
+    badge: 'text-amber-800 dark:text-amber-300',
+    defaultTitle: 'Remark',
+  },
+  quote: {
+    border: 'border-l-4 border-[var(--accent)]',
+    bg: 'bg-[var(--accent-subtle)]/40',
+    text: 'text-[var(--text-primary)] italic',
+    badge: 'text-[var(--accent)]',
+    defaultTitle: 'Quote',
+  },
+};
+
+const current = styles[type] || styles.note;
+---
+
+<aside class={`my-6 rounded-r-md ${current.border} ${current.bg} p-4 sm:p-5 transition-colors`}>
+  <div class="mb-2 font-sans text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+    <span class={current.badge}>{title || current.defaultTitle}</span>
+  </div>
+  <div class={`text-[1rem] leading-relaxed ${current.text} [&>p:first-child]:mt-0 [&>p:last-child]:mb-0`}>
+    <slot />
+  </div>
+</aside>

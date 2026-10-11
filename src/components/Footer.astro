@@ -1,0 +1,14 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="mt-20 border-t border-[var(--border-subtle)] py-8 text-xs text-[var(--text-muted)] font-sans">
+  <div class="max-w-3xl mx-auto px-6 flex items-center justify-between">
+    <div>
+      &copy; {currentYear} Sumit Kumar
+    </div>
+    <a href="/rss.xml" class="hover:text-[var(--text-primary)] transition-colors">
+      RSS
+    </a>
+  </div>
+</footer>

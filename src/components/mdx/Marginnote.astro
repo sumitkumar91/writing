@@ -1,0 +1,22 @@
+---
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const inputId = `marginnote-${id}`;
+---
+
+<span class="marginnote-wrapper relative inline">
+  <label
+    for={inputId}
+    class="marginnote-label cursor-pointer select-none font-sans text-xs font-medium text-[var(--accent)] hover:opacity-80 inline-block align-super px-0.5"
+    title="Toggle margin note"
+  >
+    &#8853;
+  </label>
+  <input type="checkbox" id={inputId} class="marginnote-checkbox sr-only peer" />
+  <span class="marginnote-text hidden peer-checked:block xl:!block xl:float-right xl:clear-right xl:-mr-[320px] xl:w-[270px] xl:text-[0.85rem] text-[0.875rem] font-sans text-[var(--text-secondary)] leading-relaxed my-2 xl:my-0 p-3 xl:p-0 bg-[var(--bg-secondary)] xl:bg-transparent rounded xl:rounded-none border xl:border-0 border-[var(--border-subtle)]">
+    <slot />
+  </span>
+</span>
