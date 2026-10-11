@@ -101,10 +101,37 @@ a.editorial-link:hover {
 
 /* Math typesetting refinements */
 .katex-display {
-  margin: 1.5rem 0 !important;
-  padding: 0.75rem 0;
+  display: block;
+  position: relative;
+  margin: 1.75rem 0 !important;
+  padding: 0.5rem 0;
   overflow-x: auto;
   overflow-y: hidden;
+  text-align: center;
+}
+
+.katex-display > .katex {
+  display: block;
+  text-align: center;
+  white-space: nowrap;
+  position: relative;
+}
+
+.katex-display > .katex > .katex-html {
+  display: block;
+  position: relative;
+}
+
+.katex-display > .katex > .katex-html > .tag,
+.katex-display > .katex > .katex-html > .katex-tag {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-family: var(--font-serif);
+  font-size: 0.95em;
+  padding-left: 1.5rem;
 }
 
 .katex {
