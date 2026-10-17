@@ -53,11 +53,10 @@ const schemaData = {
   <!-- Scroll Progress Indicator -->
   <div id="scroll-progress-bar" class="fixed top-0 left-0 h-[2px] bg-[var(--accent)] z-50 transition-all duration-75 w-0"></div>
 
-  <div class="max-w-6xl mx-auto px-6 py-12">
-    <div class="max-w-3xl">
-      <!-- Back Navigation -->
-      <a
-        href="/"
+  <div class="max-w-3xl mx-auto px-6 py-12">
+    <!-- Back Navigation -->
+    <a
+      href="/"
         class="inline-flex items-center gap-1.5 font-sans text-xs font-medium text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors mb-8 group"
       >
         <span class="group-hover:-translate-x-0.5 transition-transform">&larr;</span>
@@ -108,24 +107,18 @@ const schemaData = {
               </div>
             </>
           )}
-        </div>
-      </header>
-    </div>
-
-    <!-- Layout Container: Article content on left/center, wide margin for Tufte sidenotes on xl screens -->
-    <div class="relative">
-      <div class="max-w-3xl">
-        <!-- Article MDX Content Body -->
-        <article class="prose prose-stone dark:prose-invert max-w-none text-[1.125rem] leading-[1.8] text-[var(--text-primary)]">
-          <slot />
-        </article>
-
-        <!-- Minimal Signoff -->
-        <div class="mt-14 pt-6 border-t border-[var(--border-subtle)] flex items-center justify-between font-sans text-xs text-[var(--text-muted)]">
-          <span>Written by {author}</span>
-          <a href="/" class="hover:text-[var(--accent)] transition-colors">&larr; Back to writing</a>
-        </div>
       </div>
+    </header>
+
+    <!-- Article MDX Content Body -->
+    <article class="prose prose-stone dark:prose-invert max-w-none text-[1.125rem] leading-[1.8] text-[var(--text-primary)]">
+      <slot />
+    </article>
+
+    <!-- Minimal Signoff -->
+    <div class="mt-14 pt-6 border-t border-[var(--border-subtle)] flex items-center justify-between font-sans text-xs text-[var(--text-muted)]">
+      <span>Written by {author}</span>
+      <a href="/" class="hover:text-[var(--accent)] transition-colors">&larr; Back to writing</a>
     </div>
   </div>
 </BaseLayout>
