@@ -1,6 +1,5 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import TableOfContents from '../components/TableOfContents.astro';
 import { formatDate } from '../utils/formatDate';
 
 interface Heading {
@@ -116,8 +115,6 @@ const schemaData = {
     <!-- Layout Container: Article content on left/center, wide margin for Tufte sidenotes on xl screens -->
     <div class="relative">
       <div class="max-w-3xl">
-        {headings.length > 0 && <TableOfContents headings={headings} />}
-
         <!-- Article MDX Content Body -->
         <article class="prose prose-stone dark:prose-invert max-w-none text-[1.125rem] leading-[1.8] text-[var(--text-primary)]">
           <slot />
