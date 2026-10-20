@@ -7,8 +7,18 @@ const currentYear = new Date().getFullYear();
     <div>
       &copy; {currentYear} Sumit Kumar
     </div>
-    <a href="/rss.xml" class="hover:text-[var(--text-primary)] transition-colors">
-      RSS
-    </a>
+    <div class="flex items-center gap-4">
+      <a
+        href="https://medium.com/@sumit_kumar91"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-[var(--text-primary)] transition-colors"
+      >
+        Medium
+      </a>
+      <a href="/rss.xml" class="hover:text-[var(--text-primary)] transition-colors">
+        RSS
+      </a>
+    </div>
   </div>
 </footer>
