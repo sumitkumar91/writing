@@ -1,0 +1,318 @@
+---
+title: "The Fibonacci Sequence Before Fibonacci"
+description: "How ancient Indian scholars like Pingala, Virahanka, and Hemachandra uncovered the Fibonacci sequence centuries before Europe, and the derivation of Binet's formula."
+pubDate: 2026-10-19
+tags: ["Mathematics", "History", "Combinatorics"]
+author: "Sumit Kumar"
+draft: false
+---
+
+How was the sequence $1, 1, 2, 3, 5, 8, \dots$ discovered? Most textbooks would credit the Italian mathematician Leonardo of Pisa (later named Fibonacci) for the discovery of the aforementioned sequence, better known as the Fibonacci Sequence. It is generally taught that Fibonacci discovered the sequence while calculating how fast rabbits could breed.
+
+But what if I tell you that the Fibonacci Sequence was studied centuries before the great mathematician was born?
+
+Yes, an Indian poet and scholar, Acharya Pingala, composed the *Chandaḥśāstra*, a treatise on Sanskrit poetic metres, around 200 BCE. His *Chandaḥśāstra* systematically examined Sanskrit poetic metres and methods for enumerating patterns of short and long syllables.
+
+<figure class="my-8 text-center">
+  <img
+    src="/images/acharya-pingala.png"
+    alt="Depiction of Acharya Pingala with Sanskrit prosody manuscript"
+    class="mx-auto rounded-lg max-h-[380px] shadow-sm border border-[var(--border-subtle)]"
+  />
+  <figcaption class="mt-2.5 text-xs text-[var(--text-muted)] italic">
+    Acharya Pingala (c. 3rd–2nd century BCE), author of the Chandaḥśāstra
+  </figcaption>
+</figure>
+
+Let us understand how this connects to the Fibonacci Sequence.
+
+In Sanskrit prosody, syllables can be classified as follows:
+
+- **Laghu:** A short syllable, corresponding to 1 beat.
+- **Guru:** A long syllable, corresponding to 2 beats.
+
+Let us denote the Laghu syllable as A and the Guru syllable as B.
+
+Now we have a question: How many different combinations of short and long syllables can we create if we are given a fixed number of beats, $n$?
+
+Start with $n = 1$:
+
+There is only 1 combination, a short syllable, i.e., A.
+
+Now, $n = 2$:
+
+There are 2 combinations: AA and B.
+
+For $n = 3$:
+
+There are 3 combinations: AAA, AB, BA.
+
+For $n = 4$:
+
+There are 5 combinations: AAAA, AAB, BAA, ABA, BB.
+
+Do you notice the pattern? If $f(n)$ denotes the number of different combinations for $n$ beats, the pattern shows that
+
+$$
+f(1) = 1, \qquad f(2) = 2
+$$
+
+and recursively,
+
+$$
+f(n) = f(n-1) + f(n-2)
+$$
+
+This is indeed the recursive formulation for the Fibonacci Sequence.
+
+The Fibonacci-like pattern was studied by Indian scholars, although the explicit recurrence is more securely associated with later scholars such as Virahanka and Hemachandra rather than Pingala alone.
+
+But this is just an observation so far, and we have not proved anything yet.
+
+So, here I propose the following conjecture:
+
+Given that $f(n)$ denotes the total number of different combinations of short and long syllables for a duration of $n$ beats, and $n > 2$, we have the formulation:
+
+$$
+f(n) = f(n-1) + f(n-2)
+$$
+
+## Proof
+
+We need to find $f(n)$, or the different combinations of short and long syllables for $n$ beats. Any combination will either end with a short or a long syllable (trivial, right?).
+
+### Case I: It ends with a short syllable (meaning 1 beat)
+
+If it ends with a short syllable, then the combination of beats preceding it must equal $n-1$ beats. Can you find the total number of combinations with $n-1$ beats? Yes, that is $f(n-1)$!
+
+### Case II: It ends with a long syllable (meaning 2 beats)
+
+If it ends with a long syllable, then the combination of beats preceding it must equal $n-2$ beats. Can you find the total number of combinations with $n-2$ beats? Yes, that is $f(n-2)$!
+
+Note that these two cases are exhaustive, as we can only have a 1-beat or a 2-beat syllable in our combinations.
+
+So, from these two cases, we can conclude that:
+
+$$
+f(n) = f(n-1) + f(n-2)
+$$
+
+Q.E.D.
+
+So the Fibonacci Sequence was studied in ancient India, centuries before it was popularized in Europe under the name of the mathematician Fibonacci.
+
+This is the recursive formulation of the Fibonacci Sequence that we just found out. Let us try to find out the closed-form formulation for this sequence.
+
+## Finding the Closed-Form Formula
+
+We have the following recurrence formulation:
+
+$$
+f(n) = f(n-1) + f(n-2)
+$$
+
+Rewriting,
+
+$$
+f(n) - f(n-1) - f(n-2) = 0
+$$
+
+Now let us form a characteristic equation. Assume the solution is of the form:
+
+$$
+f(n) = r^n
+$$
+
+We can now rewrite our equation as:
+
+$$
+r^n - r^{n-1} - r^{n-2} = 0
+$$
+
+Dividing each term by $r^{n-2}$, we get:
+
+$$
+r^2 - r - 1 = 0
+$$
+
+By the Bhaskara formula, the roots of any quadratic equation in the form $ax^2 + bx + c = 0$ are given by:
+
+$$
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$
+
+Applying that formula to our equation, we get:
+
+$$
+r = \frac{-(-1) \pm \sqrt{(-1)^2 - 4(1)(-1)}}{2(1)}
+$$
+
+Simplifying,
+
+$$
+r = \frac{1 \pm \sqrt{5}}{2}
+$$
+
+Root 1:
+
+$$
+r_1 = \frac{1 + \sqrt{5}}{2}
+$$
+
+Root 2:
+
+$$
+r_2 = \frac{1 - \sqrt{5}}{2}
+$$
+
+We call the value $r_1$ phi ($\phi$) and the value $r_2$ psi ($\psi$).
+
+Therefore,
+
+$$
+\phi = \frac{1 + \sqrt{5}}{2}, \qquad \psi = \frac{1 - \sqrt{5}}{2}
+$$
+
+Because the roots are distinct, the general solution is a linear combination of the powers of both roots:
+
+$$
+F(n) = A r_1^n + B r_2^n
+$$
+
+Equivalently,
+
+$$
+F(n) = A \phi^n + B \psi^n
+$$
+
+We know that, for the Fibonacci Sequence:
+
+$$
+F(0) = 0, \qquad F(1) = 1
+$$
+
+### Solve for constants A and B
+
+For $n = 0$:
+
+$$
+F(0) = A \phi^0 + B \psi^0
+$$
+
+Since $F(0) = 0$:
+
+$$
+A + B = 0 \implies A = -B
+$$
+
+For $n = 1$:
+
+$$
+F(1) = A \phi + B \psi
+$$
+
+Since $F(1) = 1$:
+
+$$
+A \phi + B \psi = 1
+$$
+
+Substituting $A = -B$:
+
+$$
+-B \phi + B \psi = 1
+$$
+
+Rearranging,
+
+$$
+B(\psi - \phi) = 1
+$$
+
+Since
+
+$$
+\psi - \phi = -\sqrt{5}
+$$
+
+we get
+
+$$
+-B\sqrt{5} = 1
+$$
+
+Therefore,
+
+$$
+B = -\frac{1}{\sqrt{5}}
+$$
+
+Since $A = -B$:
+
+$$
+A = \frac{1}{\sqrt{5}}
+$$
+
+So this is our final closed-form formulation:
+
+$$
+F(n) = \frac{\phi^n - \psi^n}{\sqrt{5}}
+$$
+
+This is called **Binet's formula**.
+
+This formula can be used to compute the $n$th number in the sequence without the need for the previous two terms.
+
+Note that the conventional Fibonacci Sequence starts with $F(0) = 0$ and $F(1) = 1$, whereas our poetic counting function starts with $f(0) = 1$ and $f(1) = 1$. Therefore, the total number of combinations for $n$ beats is given by:
+
+$$
+f(n) = F(n+1) = \frac{\phi^{n+1} - \psi^{n+1}}{\sqrt{5}}
+$$
+
+## The Golden Ratio
+
+Now, a little about
+
+$$
+\phi = \frac{1 + \sqrt{5}}{2} \approx 1.618034
+$$
+
+This is called the **Golden Ratio**, one of the most beautiful numbers in mathematics.
+
+Here are some elegant facts.
+
+The Golden Ratio has been associated with human body proportions, such as the ratio of total body height to the distance from the navel to the floor, and the lengths of finger phalanges (bone sections).
+
+The ratio frequently appears in discussions of efficient structural configurations in biology. For instance, sunflower seeds, pinecones, and flower petals often form opposing spirals whose counts correspond to consecutive Fibonacci numbers. In some plant arrangements, these patterns are associated with the Golden Angle, approximately $137.5^\circ$.
+
+Much like the rule of thirds, designers sometimes use the Golden Ratio as a compositional grid to manage negative space, structure web layouts, and balance visual weight. However, its use does not guarantee a more aesthetically pleasing design.
+
+If you take any two successive numbers in the Fibonacci Sequence and divide the higher number by the lower one, the resulting value gets closer and closer to $\phi$ as the numbers grow larger.
+
+For example,
+
+$$
+\frac{5}{3} \approx 1.667
+$$
+
+$$
+\frac{8}{5} = 1.6
+$$
+
+$$
+\frac{13}{8} = 1.625
+$$
+
+$$
+\frac{21}{13} \approx 1.615
+$$
+
+As the numbers grow larger, these ratios approach:
+
+$$
+\phi = \frac{1 + \sqrt{5}}{2} \approx 1.618034
+$$
+
+That's it for this article. There’s a lot we still have to talk about regarding the Fibonacci Sequence, the Golden Ratio, and, of course, ancient Indian science, and we will do so in upcoming articles.
+
+Happy learning!

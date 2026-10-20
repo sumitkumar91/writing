@@ -139,6 +139,11 @@ a.editorial-link:hover {
   color: var(--text-primary);
 }
 
+.katex .katex-mathml {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 /* Academic quotes & citations */
 blockquote.academic-quote {
   position: relative;
